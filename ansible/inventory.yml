@@ -1,47 +1,47 @@
 vpnnodes:
   hosts:
-    DE_VPN_NODE_1:
+    DE_NODE_1:
       ansible_host: 127.0.0.1
       ansible_port: 22
-      ansible_user: DE_VPN_NODE_1
-    DE_VPN_NODE_2:
+      ansible_user: DE_NODE_1
+    DE_NODE_2:
       ansible_host: 127.0.0.1
       ansible_port: 23
-      ansible_user: DE_VPN_NODE_2
-    FL_VPN_NODE_1:
+      ansible_user: DE_NODE_2
+    FL_NODE_1:
       ansible_host: 127.0.0.1
       ansible_port: 24
-      ansible_user: FL_VPN_NODE_1
-    FL_VPN_NODE_2:
+      ansible_user: FL_NODE_1
+    FL_NODE_2:
       ansible_host: 127.0.0.1
       ansible_port: 25
-      ansible_user: FL_VPN_NODE_2
-    NL_VPN_NODE_1:
+      ansible_user: FL_NODE_2
+    NL_NODE_1:
       ansible_host: 127.0.0.1
       ansible_port: 22
-      ansible_user: NL_VPN_NODE_2
-    NL_VPN_NODE_2:
+      ansible_user: NL_NODE_2
+    NL_NODE_2:
       ansible_host: 127.0.0.1
       ansible_port: 12345
-      ansible_user: NL_VPN_NODE_2
+      ansible_user: NL_NODE_2
 
 germany:
   hosts:
-    DE_VPN_NODE_1:
-    DE_VPN_NODE_2:
+    DE_NODE_1:
+    DE_NODE_2:
   vars:
     domain: de.example.com
 
 finland:
   hosts:
-    FL_VPN_NODE_1:
-    FL_VPN_NODE_2:
+    FL_NODE_1:
+    FL_NODE_2:
   vars:
     domain: fl.example.com
 
 netherlands:
   hosts:
-    NL_VPN_NODE_1:
-    NL_VPN_NODE_2:
+    NL_NODE_1:
+    NL_NODE_2:
   vars:
     domain: nl.example.com
