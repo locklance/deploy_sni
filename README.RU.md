@@ -1,6 +1,7 @@
 # deploy-xray-sni
 ![Ansible](https://img.shields.io/badge/automation-Ansible-blue?style=flat-square)
 ![Xray](https://img.shields.io/badge/xray-supported-purple?style=flat-square)
+
 С помощью данного гайда вы сможете развернуть собственный SNI с сертификатом DNS-01, который можно использовать, как заглушку для VLESS-REALITY.
 
 Ниже описано два метода запуска:

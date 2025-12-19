@@ -1,6 +1,7 @@
 # deploy-xray-sni
 ![Ansible](https://img.shields.io/badge/automation-Ansible-blue?style=flat-square)
 ![Xray](https://img.shields.io/badge/xray-supported-purple?style=flat-square)
+
 Following guide, you will be able to deploy your own SNI with a DNS-01 certificate, which can be used as self steal SNI for VLESS-REALITY.
 
 Two deploy methods are described below:
