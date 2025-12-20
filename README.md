@@ -16,15 +16,15 @@ Two deploy methods are described below:
 ```sh
 git clone https://github.com/locklance/xray-sni.git
 ```
-3. Fill up `.env` file with obtained API-token: 
+3. Fill in `.env` file with obtained API-token: 
 ```sh
 cd xray-sni
 vim .env
------ Fill up .env: -----
-  SNI_DOMAIN="sni.example.com" # SNI dest address
-  SNI_PORT="9443" # SNI dest port
-  CF_API_TOKEN="YOUR_CF_API_TOKEN" # Cloudflare API token
----------------------------
+
+----- Fill in .env: -----
+SNI_DOMAIN="sni.example.com" # SNI dest address
+SNI_PORT="9443" # SNI dest port
+CF_API_TOKEN="YOUR_CF_API_TOKEN" # Cloudflare API token
 ```
 4. Start SNI
 ```sh
