@@ -20,11 +20,11 @@ git clone https://github.com/locklance/xray-sni.git
 ```sh
 cd xray-sni
 vim .env
+
 ----- Заполняем .env: -----
-  SNI_DOMAIN="sni.example.com" # SNI dest address
-  SNI_PORT="9443" # SNI dest port
-  CF_API_TOKEN="YOUR_CF_API_TOKEN" # Cloudflare API token
----------------------------
+SNI_DOMAIN="sni.example.com" # SNI dest address
+SNI_PORT="9443" # SNI dest port
+CF_API_TOKEN="YOUR_CF_API_TOKEN" # Cloudflare API token
 ```
 4. Запускаем SNI
 ```sh
