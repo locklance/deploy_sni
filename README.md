@@ -5,13 +5,13 @@
 Following guide, you will be able to deploy your own SNI with a DNS-01 certificate, which can be used as self steal SNI for VLESS-REALITY.
 
 Two deploy methods are described below:
-1. [Manual deploy]()
-2. [Automatic deploy]()
+1. [Manual deploy](#manual-deploy)
+2. [Automatic deploy](#automatic-mode-deployment-ansible)
 >[!WARNING]
 > You have to obtain Cloudflare domain for accurate SNI setup
 ---
 ## Manual deploy
-1. [Issue your own API-token]() before
+1. [Issue your own API-token](#obtaining-a-cloudflare-token) before
 2. Clone SNI repository
 ```sh
 git clone https://github.com/locklance/xray-sni.git
