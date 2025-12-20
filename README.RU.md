@@ -34,26 +34,54 @@ sudo docker compose up -d && docker compose logs -ft
 ## Запуск в автоматическом режиме (Ansible)
 Запуск в автоматическом режиме может показаться сложным, но на самом деле он очень простой и занимает куда меньше времени если у вас два и более серверов!
 ### Подготовка
-1. Добавляем ssh-ключи на своем ПК через ssh-agent
+1. Первоначальная настройка удаленного серверов
+Вы можете пропустить данный шаг, если у вас уже настроены сервера: 
+- установлен кастомный юзер (не root);
+- установлен доступ по SSH-ключу. 
+
+Если сервер еще не был настроен, то поочередно выполняем следующие команды:
+```sh
+# обновляем пакеты
+sudo apt update && sudo apt upgrade -y
+
+# создаём пользователя
+sudo adduser USER_NODE_1
+sudo usermod -aG sudo USER_NODE_1
+
+# создаем ssh-ключ
+sudo ssh-keygen -t ed25519
+cat .ssh/id_rsa.pub # копируем содержимое
+
+# добавляем публичный ssh-ключ
+vim .ssh/authorized_keys # вставляем содержимое .ssh/id_rsa.pub
+
+# настраиваем SSH
+sudo vim /etc/ssh/sshd_config
+# Port <новый порт>
+# PasswordAuthentication no
+
+sudo systemctl restart ssh
+```
+2. Добавляем ssh-ключи на своем ПК через ssh-agent
 Для безопасности, чтобы не добавлять путь до каждого ключа в inventory файле, добавляем ssh ключ в систему через ssh-add:
 ```sh
 ssh-add .ssh/your_key
 ```
-2. Создаем venv
+3. Создаем venv
 ```sh
 python -m venv venv
 source venv/bin/activate
 ```
-3. Устанавливаем Ansible
+4. Устанавливаем Ansible
 ```sh
 pip install ansible
 ```
-4. Устанавливаем роль Ansible
+5. Устанавливаем роль Ansible
 Устанавливаем роль для автоматической загрузки docker в систему:
 ```sh
 ansible-galaxy install geerlingguy.docker
 ```
-5. Настраиваем inventory файл
+6. Настраиваем inventory файл
 Самый важный пункт, в котором мы должны заполнить файл `ansible/inventory.yml` данными для ssh соединения с серверами.
 Пример:
 ```yml
@@ -123,7 +151,7 @@ ansible-playbook ansible/playbooks/deploy_sni.yml -i ansible/inventory.yml -l fi
 ![Регистрация домена](/docs/media/create-domain.png)
 
 ### Получаем API-токен
-1. Переходиим в личный профиль
+1. Переходим в личный профиль
 ![Заходим в профиль](/docs/media/cf-profile.png)
 2. Находим раздел API Tokens
 ![Заходим в раздел API Tokens](/docs/media/get-api-key-2.png)

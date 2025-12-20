@@ -33,28 +33,56 @@ sudo docker compose up -d && docker compose logs -ft
 ## Automatic mode deployment (Ansible)
 Automatic mode deployment may seem complex, but in fact it is very simple and takes much less time if you have two or more servers!
 ### Preparation
-1. Add ssh keys to ssh-agent
+1. Initial setup of remote servers
+You can skip this step if your servers are already configured:
+- a custom user (not root) is created;
+- SSH key-based access is set up.
+
+If the server has not been configured yet, execute the following commands step by step:
+```sh
+# update packages
+sudo apt update && sudo apt upgrade -y
+
+# create a user
+sudo adduser USER_NODE_1
+sudo usermod -aG sudo USER_NODE_1
+
+# generate an SSH key
+sudo ssh-keygen -t ed25519
+cat .ssh/id_rsa.pub # copy the contents
+
+# add the public SSH key
+vim .ssh/authorized_keys # paste the contents of .ssh/id_rsa.pub
+
+# configure SSH
+sudo vim /etc/ssh/sshd_config
+# Port <new port>
+# PasswordAuthentication no
+
+sudo systemctl restart ssh
+```
+2. Add ssh keys to ssh-agent
 To use ansible you need to own ssh keys for remote servers and add them to ssh-agent, by using:
 ```sh
 ssh-add .ssh/your_key
 ```
-2. Create venv
+3. Create venv
 You also need to create venv:
 ```sh
 python3 -m venv venv
 source venv/bin/activate
 ```
-3. Install Ansible
+4. Install Ansible
 Install Ansible:
 ```sh
 pip install ansible
 ```
-4. Install additional roles
+5. Install additional roles
 Install role for docker installation:
 ```sh
 ansible-galaxy install geerlingguy.docker
 ```
-5. Configure the inventory file
+6. Configure the inventory file
 This is the most important step, where we need to fill in the `ansible/inventory.yml` file with the data required for SSH connections to the servers.
 Example:
 ```yml
